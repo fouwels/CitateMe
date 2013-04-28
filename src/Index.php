@@ -6,10 +6,13 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="row">
-		<h1>Citate Me!</h1>
-		<p><?echo "Page Loaded at: ".time()?></p>
+	<div class="CustomContainer">
+		<div class="row-fluid">
+			<div class="span12 main">
+				<h1>Citate Me!</h1>
+				<p><?echo "Page Loaded at: ".time()?></p>
+			</div>
+		</div>
 	</div>
-
 </body>
 </html>
