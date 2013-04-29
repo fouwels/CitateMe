@@ -15,14 +15,22 @@
 	$to = $_POST['To'];
 	$body = $_POST['Body'];
 
+	$bodyClean = str_replace(" ", "%20", trim(str_ireplace(array('--apa', '--mla', '--echo', '--url'), '', $body)));
+
 	if (strpos($body,"--ECHO") !== false || strpos($body,"--echo") !== false) {
 
-		respond("Echo..."."$body");
+		respond("Echo...".$bodyClean);
 	}
 
-	$bodyClean = preg_replace('~--\w++\b~', '', $body);
+	
+
 	$curl = curl_init();
 	$url = "https://www.googleapis.com/books/v1/volumes?q=intitle=".$bodyClean."&key=".$GbooksApiKey;
+
+	if (strpos($body,"--URL") !== false || strpos($body,"--url") !== false) {
+
+		respond("Url...".$url);
+	}
 
 	curl_setopt($curl, CURLOPT_URL, $url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
