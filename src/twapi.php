@@ -20,8 +20,9 @@
 		respond("Echo..."."$body");
 	}
 
+	$bodyClean = preg_replace('~--\w++\b~', '', $body);
 	$curl = curl_init();
-	$url = "https://www.googleapis.com/books/v1/volumes?q=intitle="$Body."&key=".$GbooksApiKey;
+	$url = "https://www.googleapis.com/books/v1/volumes?q=intitle=".$bodyClean."&key=".$GbooksApiKey;
 
 	curl_setopt($curl, CURLOPT_URL, $url);
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
